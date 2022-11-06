@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Hero } from '../../interfaces/heroes.interface';
+import { HeroesService } from '../../services/heroes.service';
 
 @Component({
   selector: 'app-search',
@@ -8,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  term: string = '';
+  heroes: Hero[] = [];
+
+  constructor(private heroesService: HeroesService) {}
 
   ngOnInit(): void {
+  }
+
+  searching() {
+    this.heroesService.getHeroes()
+      .subscribe(res => this.heroes = res);
   }
 
 }
