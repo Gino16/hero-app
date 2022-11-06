@@ -1,11 +1,10 @@
 <h1>Listado de heroes</h1>
 <mat-divider></mat-divider>
 <br />
-<div fxLayout="row wrap">
-  <div fxFlex="20">
-    <mat-card class="example-card" *ngFor="let hero of heroes">
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
+  <div fxFlex="20" fxFlex.lg="15" fxFlex.sm="30" *ngFor="let hero of heroes">
+    <mat-card>
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{ hero.superhero }}</mat-card-title>
         <mat-card-subtitle>{{ hero.alter_ego }}</mat-card-subtitle>
       </mat-card-header>
@@ -28,9 +27,4 @@
       </mat-card-actions>
     </mat-card>
   </div>
-
 </div>
-
-<ul>
-  <li *ngFor="let hero of heroes">{{ hero.superhero }}</li>
-</ul>

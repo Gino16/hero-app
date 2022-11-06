@@ -6,7 +6,11 @@ import { HeroesService } from '../../services/heroes.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styles: [
+  styles: [`
+    mat-card {
+      margin-top: 15px;
+    }
+  `
   ]
 })
 export class ListComponent implements OnInit {
