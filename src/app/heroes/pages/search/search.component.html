@@ -3,20 +3,34 @@
     <h1>Buscador de heros</h1>
     <mat-divider></mat-divider>
   </div>
-  <div>
+  <div fxLayout="column">
     <h3>Buscador</h3>
-    {{term}}
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Assignee</mat-label>
-      <input type="text" matInput [(ngModel)]="term" [matAutocomplete]="auto" (input)="searching()" />
-      <mat-autocomplete #auto="matAutocomplete" >
-        <mat-option
-          *ngFor="let hero of heroes"
-          [value]="hero.superhero"
-        >
+    <mat-form-field appearance="fill">
+      <mat-label>Seleccione un heroe</mat-label>
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="term"
+        [matAutocomplete]="auto"
+        (input)="searching()"
+      />
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+        <mat-option *ngFor="let hero of heroes" [value]="hero">
           {{ hero.superhero }}
+        </mat-option>
+        <mat-option *ngIf="heroes.length == 0 && term.trim().length > 0" [value]="''">
+          No existen coincidencias con el termino "{{ term }}""
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
   </div>
+</div>
+
+<div>
+  <pre>
+    {{ heroSelected | json }}
+  </pre>
+</div>
+<div *ngIf="heroSelected">
+  <app-hero-card-component [hero]="heroSelected"></app-hero-card-component>
 </div>
