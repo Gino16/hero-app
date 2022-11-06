@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './pages/list/list.component';
 import { SearchComponent } from './pages/search/search.component';
 import {MatButtonModule} from "@angular/material/button";
+import { HeroCardComponentComponent } from './components/hero-card-component/hero-card-component.component';
 
 
 
@@ -19,7 +20,8 @@ import {MatButtonModule} from "@angular/material/button";
     SearchComponent,
     HeroComponent,
     HomeComponent,
-    ListComponent
+    ListComponent,
+    HeroCardComponentComponent
   ],
   imports: [
     CommonModule,
