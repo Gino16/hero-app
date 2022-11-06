@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material/material.module';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { HeroCardComponentComponent } from './components/hero-card-component/hero-card-component.component';
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { AddComponent } from './pages/add/add.component';
@@ -14,7 +15,6 @@ import { SearchComponent } from './pages/search/search.component';
 import { ImagePipe } from './pipes/imagen.pipe';
 
 
-
 @NgModule({
   declarations: [
     AddComponent,
@@ -23,6 +23,7 @@ import { ImagePipe } from './pipes/imagen.pipe';
     HomeComponent,
     ListComponent,
     HeroCardComponentComponent,
+    ConfirmDialogComponent,
     ImagePipe
   ],
   imports: [

@@ -17,4 +17,9 @@ export class ListComponent implements OnInit {
     this.heroesService.getHeroes().subscribe(resp => this.heroes = resp);
   }
 
+  deleteHero(id: string) {
+    this.heroesService.deleteHero(id).subscribe();
+    this.heroes = this.heroes.filter(hero => hero.id !== id);
+  }
+
 }

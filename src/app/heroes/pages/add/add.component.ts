@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 
@@ -37,7 +38,12 @@ export class AddComponent implements OnInit {
     alt_img: ''
   }
 
-  constructor(private route: ActivatedRoute, private heroesService: HeroesService, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private heroesService: HeroesService,
+    private router: Router,
+    private snackBar: MatSnackBar
+    ) {}
 
   ngOnInit(): void {
     if (!this.router.url.includes('edit')) {
@@ -54,10 +60,16 @@ export class AddComponent implements OnInit {
       return;
     }
     if (this.hero.id) {
-      this.heroesService.updateHero(this.hero).subscribe(resp => this.router.navigate(['/heroes/list']));
+      this.heroesService.updateHero(this.hero).subscribe();
     } else {
-      this.heroesService.saveHero(this.hero).subscribe(hero => this.router.navigate(['/heroes', hero.id]));
+      this.heroesService.saveHero(this.hero).subscribe();
     }
+
+    this.router.navigate(['/heroes']).then(() => {
+      this.snackBar.open('Heroe guardado', 'ok!', {
+        duration: 5000
+        });
+    });
   }
 
 }

@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/heroes/components/confirm-dialog/confirm-dialog.component';
 import { Hero } from '../../interfaces/heroes.interface';
 
 @Component({
@@ -15,9 +17,26 @@ export class HeroCardComponentComponent implements OnInit {
   @Input()
   hero!: Hero;
 
-  constructor() { }
+  @Output()
+  idEvent = new EventEmitter<string>();
+
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  deleteDialog() {
+    this.dialog.open(ConfirmDialogComponent, {
+      data: `¿Está seguro de eliminar a ${this.hero.superhero}?`
+    })
+    .afterClosed()
+    .subscribe((confirm: Boolean) => {
+      if (confirm) {
+        this.idEvent.emit(this.hero.id);
+      } else {
+        console.log('cancelado');
+      }
+    })
   }
 
 }

@@ -17,8 +17,10 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button color="warn" [routerLink]="['/heroes', hero.id]">Leer más</button>
+    <button mat-button color="primary" [routerLink]="['/heroes', hero.id]">Leer más</button>
     <button mat-button color="info" [routerLink]="['/heroes/edit', hero.id]">Editar</button>
+    <button mat-button color="warn" (click)="deleteDialog()" >
+      <mat-icon>remove</mat-icon> Eliminar</button>
     <router-outlet></router-outlet>
   </mat-card-actions>
 </mat-card>
