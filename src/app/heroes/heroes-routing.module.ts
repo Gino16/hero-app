@@ -10,6 +10,7 @@ import { SearchComponent } from './pages/search/search.component';
 const routes: Routes = [
   {
     path: '',
+    component: HomeComponent,
     children: [
       {
         path: 'list', component: ListComponent
@@ -25,9 +26,6 @@ const routes: Routes = [
       },
       {
         path: ':id', component: HeroComponent
-      },
-      {
-        path: 'home', component: HomeComponent
       },
       {
         path: '**', redirectTo: 'list'
