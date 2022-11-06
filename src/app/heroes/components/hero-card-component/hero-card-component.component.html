@@ -5,7 +5,7 @@
   </mat-card-header>
   <img
     mat-card-image
-    src="assets/heroes/{{ hero.id }}.jpg"
+    [src]="hero | image"
     [alt]="hero.superhero"
   />
   <mat-card-content>

@@ -11,6 +11,7 @@ import { ListComponent } from './pages/list/list.component';
 import { SearchComponent } from './pages/search/search.component';
 import {MatButtonModule} from "@angular/material/button";
 import { HeroCardComponentComponent } from './components/hero-card-component/hero-card-component.component';
+import { ImagePipe } from './pipes/imagen.pipe';
 
 
 
@@ -21,7 +22,8 @@ import { HeroCardComponentComponent } from './components/hero-card-component/her
     HeroComponent,
     HomeComponent,
     ListComponent,
-    HeroCardComponentComponent
+    HeroCardComponentComponent,
+    ImagePipe
   ],
   imports: [
     CommonModule,
