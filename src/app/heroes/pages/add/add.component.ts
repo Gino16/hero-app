@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
+
 import { Hero, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styles: [
-  ]
+  styles: [`
+    img {
+      width: 100%;
+      border-radius: 5px
+    }
+  `]
 })
 export class AddComponent implements OnInit {
 
@@ -31,10 +37,15 @@ export class AddComponent implements OnInit {
     alt_img: ''
   }
 
-  constructor(private route: ActivatedRoute, private heroesService: HeroesService) {}
+  constructor(private route: ActivatedRoute, private heroesService: HeroesService, private router: Router) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => console.log(params['id']));
+    if (!this.router.url.includes('edit')) {
+      return;
+    }
+    this.route.params.pipe(
+      switchMap(({ id }) => this.heroesService.getHeroById(id))
+    ).subscribe(hero => this.hero = hero);
   }
 
   save() {
@@ -42,7 +53,11 @@ export class AddComponent implements OnInit {
       console.log('hola')
       return;
     }
-    this.heroesService.saveHero(this.hero).subscribe(resp => console.log(resp));
+    if (this.hero.id) {
+      this.heroesService.updateHero(this.hero).subscribe(resp => this.router.navigate(['/heroes/list']));
+    } else {
+      this.heroesService.saveHero(this.hero).subscribe(hero => this.router.navigate(['/heroes', hero.id]));
+    }
   }
 
 }
