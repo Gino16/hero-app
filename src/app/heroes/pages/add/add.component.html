@@ -1,4 +1,4 @@
-<h1>Nuevo heroe <small></small></h1>
+<h1><span>{{(hero.id) ? 'Editar' : 'Nuevo'}}</span> heroe <small>{{hero.superhero}}</small></h1>
 
 <div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
   <div fxFlex="50" fxLayout="column">
@@ -41,8 +41,8 @@
     </mat-form-field>
     <br />
     <button mat-raised-button color="primary" (click)="save()">
-      <mat-icon>save</mat-icon>
-      Guardar
+      <mat-icon>{{(hero.id) ? 'edit':'save'}}</mat-icon>
+      {{(hero.id) ? 'Editar' : 'Guardar'}}
     </button>
   </div>
   <div fxFlex="50">
